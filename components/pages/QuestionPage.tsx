@@ -68,7 +68,7 @@ export default function QuestionPage() {
     };
 
     return (
-        <div className='w-full flex flex-col gap-6 justify-start items-center overflow-auto'>
+        <div className='w-full min-h-screen flex flex-col gap-6 justify-start items-center overflow-auto'>
             <div className={sofadi_one.className}>
                 <h1 className='text-4xl md:text-8xl text-[var(--bg-secondary)] font-extrabold p-2'>Sirius Writing...</h1>
             </div>

@@ -21,7 +21,7 @@ interface AppContextProviderProps {
 }
 
 export const AppContextProvider = ({children}: AppContextProviderProps) => {
-    const [type, setType] = useState<WritingType >(defaultWritingType);
+    const [type, setType] = useState<WritingType>(defaultWritingType);
     const [difficulty, setDifficulty] = useState("");
     const [context, setContext] = useState("");
 

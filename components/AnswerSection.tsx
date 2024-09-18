@@ -28,6 +28,7 @@ export default function AnswerSection() {
     const [copyError, setCopyError] = useState(false);
 
     useEffect(() => {
+
         if(!type|| !difficulty || !context) {
             router.push("/");
             return;
