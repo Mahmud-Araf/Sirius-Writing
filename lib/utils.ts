@@ -80,7 +80,7 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.addImage(imgBase64, 'PNG', x, y, imgWidth, imgHeight, '', 'FAST');
   doc.setGState(new (doc as any).GState({ opacity: 1 }));
 
-  curHeight = doc.internal.pageSize.getHeight() - 20;
+  let curHeight = doc.internal.pageSize.getHeight() - 20;
 
   doc.setTextColor("#ff5733")
   doc.setFontSize(11);
