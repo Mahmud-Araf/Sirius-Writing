@@ -1,12 +1,12 @@
 "use client"
 import { AppContext } from "@/contexts/AppContext";
 import { useContext, useEffect, useState } from "react";
-import { noto_sans } from "@/lib/fonts";
+import { lora, noto_sans } from "@/lib/fonts";
 import { TiArrowBack } from "react-icons/ti";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { PiDownloadSimpleBold } from "react-icons/pi";
 import { useRouter } from "next/navigation";
-import { generateWriting } from "@/lib/utils";
+import { generateWriting,downloadWriting } from "@/lib/utils";
 
 export default function AnswerSection() {
 
@@ -21,6 +21,7 @@ export default function AnswerSection() {
 
     const [answer, setAnswer] = useState("");
     const [copied, setCopied] = useState(false);
+    const [downloaded, setDownloaded] = useState(false);
     const [copyError, setCopyError] = useState(false);
 
     useEffect(() => {
@@ -34,7 +35,6 @@ export default function AnswerSection() {
     const handleCopy = () => {
         try {
             setCopied(true);
-        
             const textarea = document.createElement("textarea");
             textarea.value = answer;
             document.body.appendChild(textarea);
@@ -52,20 +52,52 @@ export default function AnswerSection() {
         }
     };
 
+    async function downloadHandler(){
+
+        setDownloaded(true);
+
+        await downloadWriting(type, context, answer);
+
+        setTimeout(() => {
+            setDownloaded(false);
+        }, 1000);
+
+    }
+
     return (
-        <div className={`${noto_sans.className} w-full flex flex-col justify-center items-center overflow-auto`}>
-            <h1 className="text-lg md:text-4xl p-3 text-[var(--bg-secondary)] text-center">{`${type.label} on ${context}`}</h1>
-            <pre className="w-[90%] text-sm md:text-lg p-3 text-wrap tracking-wide whitespace-pre-wrap">
+        <div className={`w-full flex flex-col justify-center items-center overflow-auto`}>
+            <h1 className={`${noto_sans.className} text-md md:text-4xl p-3 text-[var(--bg-secondary)] text-center overflow-hidden text-ellipsis whitespace-nowrap w-[90%]`}>
+                {`${type.label} on ${context}`}
+            </h1>
+            {
+                !answer && (
+                    <div className={`${lora.className} text-md md:text-lg p-3 text-center`}>
+                        Generating your writing...
+                    </div>
+                )
+            }
+            <pre className={`${lora.className} w-[90%] text-sm md:text-lg p-3 text-wrap tracking-wide whitespace-pre-wrap`}>
                 {answer}
             </pre>
-            {copied && <div key={Date.now()} className="text-[var(--bg-secondary)] text-lg p-4">Copied to clipboard</div>}
-            {copyError && <div key={Date.now()} className="text-red-500 text-lg p-4">Failed to copy to clipboard</div>}
-            <div className="flex items-center justify-center gap-8 p-8">
-                <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
-                <MdOutlineContentCopy className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={handleCopy} />
-                <PiDownloadSimpleBold className="text-3xl text-[var(--bg-secondary)] cursor-pointer" />
-            </div>
-            
+            {copied && <div className={`${noto_sans.className} text-[var(--bg-secondary)] text-lg p-4`}>Copied to clipboard</div>}
+            {copyError && <div className={`${noto_sans.className} text-red-500 text-lg p-4`}>Failed to copy to clipboard</div>}
+            {downloaded && <div className={`${noto_sans.className} text-[var(--bg-secondary)] text-lg p-4`}>Downloading Started</div>}
+            {
+                answer && (copied == false) && (downloaded == false) && (
+                    <div className="w-[60%] flex items-center justify-between p-8">
+                        <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
+                        <MdOutlineContentCopy className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={handleCopy} />
+                        <PiDownloadSimpleBold className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={downloadHandler} />
+                    </div>
+                )
+            }
+            {
+                !answer && (copied == false) && (downloaded == false) &&  (
+                    <div className="w-[60%] flex items-center justify-center p-8">
+                        <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
+                    </div>
+                )
+            }
         </div>
     );
 }

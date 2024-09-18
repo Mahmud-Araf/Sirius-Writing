@@ -22,7 +22,7 @@ export default function SelectContext() {
                     placeholder="Enter The Topic"
                     value={context}
                     onChange={(e) => setContext(e.target.value)}
-                    className="w-[80%] md:w-[50%] h-[30vh] text-left align-text-top text-sm text-black placeholder:text-black md:text-lg focus:text-white focus:placeholder-white focus:bg-[var(--bg-secondary)] focus:border-[var(--bg-secondary)] p-5 border-2 rounded-lg"
+                    className="w-[80%] md:w-[60%] h-[30vh] text-left align-text-top text-sm text-black placeholder:text-black md:text-lg  focus:border-[var(--bg-secondary)] p-5 border-2 rounded-xl"
                 />
             </div>
         </div>
