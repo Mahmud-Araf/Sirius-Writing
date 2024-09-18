@@ -28,7 +28,7 @@ export async function generateWriting(type: WritingType, difficulty: string, con
 
   } catch (error) {
     console.error("Error fetching answer:", error);
-    return "Sorry, the topic violets our policy. Please try other topics.";
+    return "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later";
   }
 }
 
@@ -54,7 +54,7 @@ export async function downloadWriting(type: WritingType, context: string, answer
   } else {
     title = `${type.label} on ${context}`;
   }
-  
+
   doc.text(title, doc.internal.pageSize.getWidth() / 2, 25, { align: "center" });
 
   doc.setFontSize(12);
