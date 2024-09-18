@@ -50,7 +50,6 @@ export async function downloadWriting(type: WritingType, context: string, answer
   }
 
   doc.setFontSize(15);
-  doc.setFont("Noto Sans", "normal");
   doc.setTextColor("#ff5733");
   const title = `${type.label} on ${context}`;
   doc.text(title, doc.internal.pageSize.getWidth() / 2, 25, { align: "center" });
@@ -58,9 +57,9 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.setFontSize(12);
   doc.setTextColor("#000000");
 
-  let curHeight = doc.getTextDimensions(title).h + 20;
+  
 
-  doc.text(answer, 10, curHeight + 10, { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
+  doc.text(answer, 10, 30 , { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
 
   const imgUrl = '/sirius_logo.png';
   const imgBase64 = await fetch(imgUrl)
