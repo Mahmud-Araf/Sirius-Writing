@@ -3,8 +3,10 @@ import QuestionPage from "@/components/pages/QuestionPage";
 
 export default function page() {
   return (
-    <div>
-      <QuestionPage />
+    <div className="min-h-screen flex flex-col">
+      <div className="flex-grow">
+        <QuestionPage />
+      </div>
       <Footer />
     </div>
   )
