@@ -34,7 +34,7 @@ export async function generateWriting(type: WritingType, difficulty: string, con
 
 function extractTextBetweenCurlyBrackets(text: string): string {
   const match = text.match(/{([^}]*)}/);
-  return match ? match[1] : "";
+  return match ? match[1] : "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later";
 }
 
 export async function downloadWriting(type: WritingType, context: string, answer: string) {
