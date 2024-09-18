@@ -60,7 +60,7 @@ export async function downloadWriting(type: WritingType, context: string, answer
 
 
 
-  doc.text(answer, 10, 50, { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
+  doc.text(answer, 10, 40, { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
 
 
 
