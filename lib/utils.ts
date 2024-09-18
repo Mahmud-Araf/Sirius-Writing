@@ -58,7 +58,7 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.setFontSize(12);
   doc.setTextColor("#000000");
 
-  let curHeight = doc.getTextDimensions(title).h + 15;
+  let curHeight = doc.getTextDimensions(title).h + 20;
 
   doc.text(answer, 10, curHeight + 10, { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
 
