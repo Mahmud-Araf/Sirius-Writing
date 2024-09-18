@@ -45,14 +45,16 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.setFont("Noto Sans", "bold");
   doc.text("Sirius Writing", doc.internal.pageSize.getWidth() / 2, 10, { align: "center" });
 
-  if (type.label == "Summary") {
-    context = "";
-  }
-
   doc.setFontSize(15);
   doc.setFont("Noto Sans", "normal");
   doc.setTextColor("#ff5733");
-  const title = `${type.label} on ${context}`;
+  let title;
+  if (type.label == "Summary") {
+    title = "Summary";
+  } else {
+    title = `${type.label} on ${context}`;
+  }
+  
   doc.text(title, doc.internal.pageSize.getWidth() / 2, 25, { align: "center" });
 
   doc.setFontSize(12);
