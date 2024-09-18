@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { WritingType } from "@/types/writingType";
 import jsPDF from 'jspdf';
 
-const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY||"";
+const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
@@ -42,14 +42,15 @@ export async function downloadWriting(type: WritingType, context: string, answer
 
   doc.setFontSize(20);
   doc.setTextColor("#009cfd");
-  doc.setFont("Noto Sans","bold");
+  doc.setFont("Noto Sans", "bold");
   doc.text("Sirius Writing", doc.internal.pageSize.getWidth() / 2, 10, { align: "center" });
 
   if (type.label == "Summary") {
-      context = "";
+    context = "";
   }
 
   doc.setFontSize(15);
+  doc.setFont("Noto Sans", "normal");
   doc.setTextColor("#ff5733");
   const title = `${type.label} on ${context}`;
   doc.text(title, doc.internal.pageSize.getWidth() / 2, 25, { align: "center" });
@@ -57,19 +58,34 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.setFontSize(12);
   doc.setTextColor("#000000");
 
-  
 
-  doc.text(answer, 10, 50 , { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
+
+  doc.text(answer, 10, 50, { align: "left", maxWidth: doc.internal.pageSize.getWidth() - 20 });
+
+
+
+  let curHeight = doc.internal.pageSize.getHeight() - 20;
+
+  doc.setTextColor("#ff5733")
+  doc.setFontSize(11);
+
+  doc.text("Powered by Sirius Academic and Admission Care", doc.internal.pageSize.getWidth() / 2, curHeight, { align: "center" });
+  doc.setTextColor("161d6f")
+  doc.setFontSize(10);
+  doc.text("email: siriusacademy47@gmail.com", doc.internal.pageSize.getWidth() / 2, curHeight + 5, { align: "center" });
+
+  doc.text("facebook: https://www.facebook.com/sirius2047/", doc.internal.pageSize.getWidth() / 2, curHeight + 10, { align: "center" });
+
 
   const imgUrl = '/sirius_logo.png';
   const imgBase64 = await fetch(imgUrl)
-      .then(response => response.blob())
-      .then(blob => new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result as string);
-          reader.onerror = reject;
-          reader.readAsDataURL(blob);
-      }));
+    .then(response => response.blob())
+    .then(blob => new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    }));
 
   const imgWidth = 120;
   const imgHeight = 120;
@@ -80,22 +96,10 @@ export async function downloadWriting(type: WritingType, context: string, answer
   doc.addImage(imgBase64, 'PNG', x, y, imgWidth, imgHeight, '', 'FAST');
   doc.setGState(new (doc as any).GState({ opacity: 1 }));
 
-  let curHeight = doc.internal.pageSize.getHeight() - 20;
-
-  doc.setTextColor("#ff5733")
-  doc.setFontSize(11);
-
-  doc.text("Powered by Sirius Academic and Admission Care", doc.internal.pageSize.getWidth() / 2, curHeight , { align: "center" });
-  doc.setTextColor("161d6f")
-  doc.setFontSize(10);
-  doc.text("email: siriusacademy47@gmail.com", doc.internal.pageSize.getWidth() / 2, curHeight + 5, { align: "center" });
-  
-  doc.text("facebook: https://www.facebook.com/sirius2047/", doc.internal.pageSize.getWidth() / 2, curHeight + 10, { align: "center" });
-
   if (type.label == "Summary") {
-      doc.save(`${type.label}.pdf`);
+    doc.save(`${type.label}.pdf`);
   } else {
-      doc.save(`${type.label}-${context}.pdf`);
+    doc.save(`${type.label}-${context}.pdf`);
   }
 
 
