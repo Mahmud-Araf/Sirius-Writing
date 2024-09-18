@@ -50,7 +50,7 @@ export function SelectWritingType() {
             </PopoverTrigger>
             <PopoverContent align="center" side="bottom" sideOffset={4} avoidCollisions={false} className="p-0 overflow-auto">
                 <Command className="bg-[var(--bg-secondary)]">
-                    <CommandInput placeholder="Search..." className={`text-white ${noto_sans.className}`} />
+                    <CommandInput placeholder="Search..." className={`text-white text-md ${noto_sans.className}`} />
                     <CommandList>
                         <CommandEmpty className="text-sm md:text-lg text-white">
                             No Writing Type found.
@@ -69,7 +69,7 @@ export function SelectWritingType() {
                                         setType(writingType)
                                         setOpen(false)
                                     }}
-                                    className={`text-white text-xs md:text-lg ${noto_sans.className}`}
+                                    className={`text-white text-xs md:text-md ${noto_sans.className}`}
                                 >
                                     <Check
                                         className={cn(
