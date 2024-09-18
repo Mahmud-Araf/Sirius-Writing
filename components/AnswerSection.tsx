@@ -13,6 +13,9 @@ export default function AnswerSection() {
     const appContext = useContext(AppContext);
     const router = useRouter();
 
+    const errorMsg = "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later.";
+
+
     if (!appContext) {
         throw new Error("AppContext is undefined");
     }
@@ -87,7 +90,7 @@ export default function AnswerSection() {
             {copyError && <div className={`${noto_sans.className} text-red-500 text-lg p-4`}>Failed to copy to clipboard</div>}
             {downloaded && <div className={`${noto_sans.className} text-[var(--bg-secondary)] text-lg p-4`}>Downloading Started</div>}
             {
-                answer && (copied == false) && (downloaded == false) && (
+                answer && (copied == false) && (downloaded == false) && (answer!==errorMsg) && (
                     <div className="w-[60%] flex items-center justify-between p-8">
                         <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
                         <MdOutlineContentCopy className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={handleCopy} />
@@ -97,6 +100,13 @@ export default function AnswerSection() {
             }
             {
                 !answer && (copied == false) && (downloaded == false) &&  (
+                    <div className="w-[60%] flex items-center justify-center p-8">
+                        <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
+                    </div>
+                )
+            }
+            {
+                (answer === errorMsg) &&  (
                     <div className="w-[60%] flex items-center justify-center p-8">
                         <TiArrowBack className="text-3xl text-[var(--bg-secondary)] cursor-pointer" onClick={() => router.push("/")} />
                     </div>

@@ -16,7 +16,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export async function generateWriting(type: WritingType, difficulty: string, context: string): Promise<string> {
 
-  const prompt = `Write a/an ${type.label} on the topic of ${context}. The ${type.label} should be for class ${difficulty === "simple" ? "9" : "12"}. Write the ${type.label} within {} brackets. And don't use bold or italic text and no need for any title. The ${type.label} must have minimum ${type.min_words} words and maximum ${type.max_words} words.The word limit must be followed.`;
+  const prompt = `Write a/an ${type.label} on the topic of ${context}. The ${type.label} should be for ${difficulty === "simple" ? "school" : "college"} students. Write the ${type.label} within {} brackets. And don't use bold or italic text and no need for any title. The ${type.label} must have minimum ${type.min_words} words and maximum ${type.max_words} words.The word limit must be followed.`;
   console.log(prompt);
 
   try {
@@ -28,13 +28,13 @@ export async function generateWriting(type: WritingType, difficulty: string, con
 
   } catch (error) {
     console.error("Error fetching answer:", error);
-    return "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later";
+    return "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later.";
   }
 }
 
 function extractTextBetweenCurlyBrackets(text: string): string {
   const match = text.match(/{([^}]*)}/);
-  return match ? match[1] : "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later";
+  return match ? match[1] : "Sorry, we’re unable to process your request at the moment due to policy restrictions or high demand. Please try again later.";
 }
 
 export async function downloadWriting(type: WritingType, context: string, answer: string) {

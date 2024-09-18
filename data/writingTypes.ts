@@ -3,8 +3,8 @@ export const writingTypes = [
       id:1,
       value: "paragraph",
       label: "Paragraph",
-      min_words:200,
-      max_words:300
+      min_words:300,
+      max_words:400
     },
     {
       id:2,
