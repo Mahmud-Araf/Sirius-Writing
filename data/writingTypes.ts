@@ -52,8 +52,8 @@ export const writingTypes = [
       id:8,
       value:"story",
       label:"Story",
-      min_words:200,
-      max_words:300
+      min_words:300,
+      max_words:400
     }
 
   ]
