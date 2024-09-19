@@ -74,7 +74,7 @@ export default function AnswerSection() {
 
     return (
         <div className={`w-full flex flex-col justify-center items-center overflow-auto`}>
-            <h1 className={`${noto_sans.className} text-md md:text-4xl p-3 text-[var(--bg-secondary)] text-center overflow-hidden text-ellipsis whitespace-nowrap w-[90%]`}>
+            <h1 className={`${noto_sans.className} text-md md:text-xl p-3 text-[var(--bg-secondary)] text-center overflow-hidden text-ellipsis whitespace-nowrap w-[90%]`}>
                 {`${type.label} on ${context}`}
             </h1>
             {
