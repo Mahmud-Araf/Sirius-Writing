@@ -36,8 +36,8 @@ export const writingTypes = [
     },
     {
       id:6,
-      value:"report",
-      label:"Report",
+      value:"newspaper report",
+      label:"Newspaper Report",
       min_words:200,
       max_words:300
     },

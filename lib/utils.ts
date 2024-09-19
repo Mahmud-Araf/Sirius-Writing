@@ -16,8 +16,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export async function generateWriting(type: WritingType, difficulty: string, context: string): Promise<string> {
 
-  const prompt = `Write a/an ${type.label} on the topic of ${context}. The ${type.label} should be for ${difficulty === "simple" ? "school" : "college"} students of Bangladesh. Write the ${type.label} within {} brackets. And don't use bold or italic text and no need for any title. The ${type.label} must have minimum ${type.min_words} words and maximum ${type.max_words} words.The word limit must be followed.
-  ${type.label==="Dialogue"?"For Dialogue write like this: Person 1: .... Person 2: ....":""}`;
+  const prompt = `Write a/an ${type.value} on the topic of ${context}. The ${type.value} should be for ${difficulty === "simple" ? "school" : "college"} students of Bangladesh. Write the ${type.value} within {} brackets. And don't use bold or italic text and no need for any title. The ${type.value} must have minimum ${type.min_words} words and maximum ${type.max_words} words.The word limit must be followed.
+  ${type.value==="dialogue"?"For dialogue write like this: Person 1: .... Person 2: ....":""}`;
   console.log(prompt);
 
   try {
