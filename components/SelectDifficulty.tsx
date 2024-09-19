@@ -63,7 +63,7 @@ export function SelectDifficulty() {
                                         setDifficulty(currentValue === difficulty ? "" : currentValue)
                                         setOpen(false)
                                     }}
-                                    className={`text-white text-sm md:text-lg ${noto_sans.className}` }
+                                    className={`text-white text-sm md:text-md ${noto_sans.className}` }
 
                                 >
                                     <Check

@@ -69,7 +69,7 @@ export function SelectWritingType() {
                                         setType(writingType)
                                         setOpen(false)
                                     }}
-                                    className={`text-white text-xs md:text-lg ${noto_sans.className}`}
+                                    className={`text-white text-xs md:text-md ${noto_sans.className}`}
                                 >
                                     <Check
                                         className={cn(
