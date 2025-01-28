@@ -110,7 +110,3 @@ The application can be deployed using:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-Project Link: [https://github.com/yourusername/sirius-writing](https://github.com/yourusername/sirius-writing)
